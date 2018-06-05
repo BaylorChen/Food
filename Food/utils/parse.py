@@ -78,16 +78,17 @@ def Dishes_Details(response):
     :return:
     '''
     jpy = PyQuery(response.text)
-    tr_list = jpy('#listtyle1_list > div').items()
-    result = set()  # result为set集合（不允许重复元素）
-    for tr in tr_list:
-        url = tr('a').attr('href')  # 爬取各个小区的url
-        result.add(url)
+    result = dict()  # result为set集合（不允许重复元素）
+    result['img'] =jpy('body > div.main_w.clearfix > div.main.clearfix > div.cp_header.clearfix > div.cp_headerimg_w > img').attr('src')
+    result['name']=jpy('#tongji_title').text()
+    # result['']=jpy('')
+    # result['']=jpy('')
+    # result['']=jpy('')
     print(result, len(result))
     return result
 
 
 if __name__ == '__main__':
     import requests
-    r = requests.get('https://www.meishij.net/china-food/xiaochi/')
-    Dishes(r)
+    r = requests.get('https://www.meishij.net/zuofa/nanguaputaoganfagao_2.html')
+    Dishes_Details(r)
