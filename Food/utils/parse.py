@@ -4,8 +4,6 @@ __author__ = 'chenjianguo'
 from pyquery import PyQuery
 
 
-
-
 def parse(response):
     """
     抓取美食tab 列表： https://www.meishij.net/chufang/diy/
@@ -69,13 +67,27 @@ def Dishes(response):
     for tr in tr_list:
         url = tr('a').attr('href')  #爬取各个小区的url
         result.add(url)
+    print(result,len(result))
     return result
 
+def Dishes_Details(response):
+    '''
+    菜品的详细信息 https://www.meishij.net/zuofa/nanguaputaoganfagao_2.html
+    返回 主要就是菜名、图片、用料、做法
+    :param response:
+    :return:
+    '''
+    jpy = PyQuery(response.text)
+    tr_list = jpy('#listtyle1_list > div').items()
+    result = set()  # result为set集合（不允许重复元素）
+    for tr in tr_list:
+        url = tr('a').attr('href')  # 爬取各个小区的url
+        result.add(url)
+    print(result, len(result))
+    return result
 
 
 if __name__ == '__main__':
     import requests
-    r = requests.get('https://www.meishij.net/chufang/diy/')
-    # r = requests.get('https://www.meishij.net/chufang/diy/guowaicaipu1/')
-    Home_cooking(r)
-    # othe_cooking(r)
+    r = requests.get('https://www.meishij.net/china-food/xiaochi/')
+    Dishes(r)
