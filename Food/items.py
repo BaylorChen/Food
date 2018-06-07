@@ -10,9 +10,10 @@ import scrapy
 
 class FoodItem(scrapy.Item):
     # define the fields for your item here like:)
-    Dishes = scrapy.Field() #菜名
-    pic = scrapy.Field()
-    url = scrapy.Field()
-    material = scrapy.Field() #材料
-    Method = scrapy.Field()# 做法
-    Popularity = scrapy.Field()# 人气
+    id  =scrapy.Field() # tab
+    # Dishes = scrapy.Field() #菜名
+    # pic = scrapy.Field()
+    # url = scrapy.Field()
+    # material = scrapy.Field() #材料
+    # Method = scrapy.Field()# 做法
+    # Popularity = scrapy.Field()# 人气
